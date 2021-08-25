@@ -3,6 +3,15 @@
 
 ---
 
+.env
+
+``` 
+STRIPE_SECRET_KEY=sk_test_1111
+SERVER=https://blue-monkey-blah.ws-usXX.gitpod.io
+```
+
+---
+
 ## Tasks
 
 * Create a subscription for a product

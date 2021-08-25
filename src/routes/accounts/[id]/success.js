@@ -7,7 +7,7 @@ export async function get({ params, query }) {
   const { id } = params
 
   const session = await stripe.checkout.sessions.retrieve(session_id)
-  console.log(session)
+  //console.log(session)
   let account = await fetch(`http://localhost:6363/data/stripe/${id}`).then(r => r.json())
 
   if (session.customer === account.customerId) {

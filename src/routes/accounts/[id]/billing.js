@@ -1,5 +1,6 @@
 import { default as Stripe } from 'stripe'
 
+const SERVER = process.env['SERVER']
 const stripe = Stripe(process.env['STRIPE_SECRET_KEY'])
 
 export async function get({ params }) {
@@ -8,7 +9,7 @@ export async function get({ params }) {
 
   const session = await stripe.billingPortal.sessions.create({
     customer: account.customerId,
-    return_url: `https://3000-sapphire-llama-k6nwkurq.ws-us16.gitpod.io/accounts/${account.id}`
+    return_url: `${SERVER}/accounts/${account.id}`
   })
 
   return {
