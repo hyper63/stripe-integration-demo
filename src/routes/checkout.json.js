@@ -1,7 +1,7 @@
 import stripe from 'stripe'
 
 const s = stripe(process.env['STRIPE_SECRET_KEY'])
-
+const SERVER = process.env['SERVER']
 export async function post({ body }) {
   const session = await s.checkout.sessions.create({
     mode: 'subscription',
@@ -12,8 +12,8 @@ export async function post({ body }) {
         quantity: 1
       }
     ],
-    success_url: `https://3000-sapphire-llama-k6nwkurq.ws-us16.gitpod.io/checkout.json?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: 'https://3000-sapphire-llama-k6nwkurq.ws-us16.gitpod.io'
+    success_url: `${SERVER}/checkout.json?session_id={CHECKOUT_SESSION_ID}`,
+    cancel_url: `${SERVER}/demo`
   })
   return {
     body: {
