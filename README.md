@@ -1,38 +1,23 @@
-# create-svelte
+<h1 align="center">Stripe Integration Demo with SvelteKit</h1>
+<p>Integrate Stripe with SvelteKit</p>
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+---
 
-## Creating a project
+## Tasks
 
-If you're seeing this, you've probably already done this step. Congrats!
+* Create a subscription for a product
+* Create a customer for app
+* Get Invoice List
+* Get Single Invoice
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
+With Stripe there are two ways to handle subscription billing:
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
+* Using Checkout
 
-> Note: the `@next` is temporary
+Using checkout, you redirect the user/customer to the checkout session portal and the customer portal.
 
-## Developing
+The checkout session portal will create a customer, subscription and payment intent for the customer,
+the customer portal will allow the customer to manage their billing information, view billing history,
+etc.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
-
-```bash
-npm run build
-```
-
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
+* Using Elements
