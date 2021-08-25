@@ -12,6 +12,21 @@
 		const { redirect } = await res.json();
 		window.location = redirect;
 	}
+
+	async function launchPortal() {
+		const res = await fetch('/portal.json', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				customerId: ''
+			})
+		});
+		const { redirect } = await res.json();
+		window.location = redirect;
+	}
+
 	const startup = () => register('price_1JS54qCdTeU3dtdY10ujCW3o');
 	const agency = () => register('price_1JSLJBCdTeU3dtdYmNisu4cH');
 </script>
@@ -25,5 +40,9 @@
 	<p>
 		<button on:click={startup}><b>Startup Plan <br /> $500/mo</b></button>
 		<button on:click={agency}><b>Agency Plan <br /> $2000/mo</b></button>
+	</p>
+	<br />
+	<p>
+		<button on:click={launchPortal}>View Billing Portal</button>
 	</p>
 </header>
