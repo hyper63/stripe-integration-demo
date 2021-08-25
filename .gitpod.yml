@@ -1,6 +1,10 @@
 # List the start up tasks. Learn more https://www.gitpod.io/docs/config-start-tasks/
 tasks:
-  - init: npm install
+  - init: |
+      curl -O https://hyperland.s3.amazonaws.com/hyper
+      chmod +x ./hyper
+    command: ./hyper
+  - init: yarn
     command: |
       echo "Applying a temporary workaround until https://github.com/vitejs/vite/pull/1992 is fixed"
       (
@@ -9,7 +13,10 @@ tasks:
         export WSS_HOST=`gp url 24678 | sed 's#https://##g'` &&
         sed -i "s#JSON.stringify(host)#JSON.stringify(\"$WSS_HOST\")#g" *   
       )
-      npm run dev
+      echo "create dev database"
+      curl -X PUT localhost:6363/data/stripe
+
+      echo "create .env file and add STRIPE KEY, then yarn dev"
 
 # List the ports to expose. Learn more https://www.gitpod.io/docs/config-ports/
 ports:

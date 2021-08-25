@@ -112,6 +112,38 @@ Other potential apis
 
 * How to find a customer by email?
 
+``` js
+import { default as Stripe } from 'stripe'
+
+const stripe = Stripe('sk_test_1234')
+
+const customers = await stripe.customers.list({
+  email: 'test@hyper.io',
+  limit: 1
+})
+
+console.log(customers[0])
+```
+
 * How to update a subscription?
+
+``` js
+import { default as Stripe } from 'stripe'
+
+const stripe = Stripe('sk_test_1234')
+
+const subscriptions = await stripe.subscriptions.list({
+  customer: 'cus_1234'
+})
+
+const sub = subscriptions[0]
+
+const res = await stripe.subscriptions.update(sub.id, {
+  items: [{
+    price: 'price_1234'
+  }]
+})
+```
+
 
 * ???
